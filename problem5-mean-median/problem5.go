@@ -1,9 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func MeanMedian(arrayInput []float64) (float64, float64) {
 	// your code here
+	// menghitung mean 
+	var sum float64
+	for _, value := range arrayInput {
+		sum += value
+	} 
+	mean := sum / float64(len(arrayInput))
+	// menghitung median
+	var median float64
+	if len(arrayInput)%2 == 0 {
+		// array memiliki jumlah elemen genap
+		median = (arrayInput[len(arrayInput)/2-1] + arrayInput[len(arrayInput)/2]) / 2
+	} else {
+		// array memiliki jumlah elemen ganjil
+		median = arrayInput[(len(arrayInput)-1)/2]
+	}
+	// pembulatan mean
+	mean = math.Round(mean*10) / 10
+	return mean, median
 }
 
 func main() {
